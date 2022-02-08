@@ -57,8 +57,8 @@ echo "
 ##"
 # bootstrap clingo
 spack spec zlib
-# Init mirror with clingo and its dependencies
-spack mirror create -d "${SPACK_MIRROR_PATH}" --dependencies clingo-bootstrap
+# Init mirror with spack basic dependencies
+spack mirror create -d "${SPACK_MIRROR_PATH}" --dependencies clingo-bootstrap gnuconfig
 
 echo "
 ##
