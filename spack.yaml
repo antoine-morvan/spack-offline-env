@@ -4,7 +4,9 @@ spack:
   config:
     install_missing_compilers: true
     concretize: separate
-    source_cache: $SPACK_ENV/spack-mirror
+    source_cache: $SPACK_ENV/spack_mirror
+  bootstrap:
+    root: $SPACK_ENV/spack_bootstrap
   definitions:
   - mpis:
     - openmpi@4.1.2+cxx

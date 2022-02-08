@@ -6,12 +6,18 @@ if [ $# == 1 ] && [ "$1" == "--clean" ]; then
 fi
 
 DIR=$(cd $(dirname $0) && pwd)
-export SPACK_USER_CACHE_PATH="${DIR}/spack_user_cache"
-MIRROR_NAME=offline_spack_mirror
 
-export TMP="${DIR}/tmp"
-export TMPDIR="${TMP}"
-mkdir -p tmp
+SPACK_ROOT="${DIR}/git/spack/"
+SPACK_MIRROR_PATH="${DIR}/spack_mirror"
+MIRROR_NAME=offline_spack_mirror
+SPACK_BOOTSTRAP_ROOT="${DIR}/spack_bootstrap"
+SPACK_USER_CACHE_PATH="${DIR}/spack_user_cache"
+TMP="${DIR}/tmp"
+TMPDIR="${TMP}"
+
+export SPACK_USER_CACHE_PATH
+export TMP
+export TMPDIR
 
 echo "
 ##
@@ -19,8 +25,10 @@ echo "
 ##"
 if [ "$CLEAN" == "YES" ]; then
     # Cleanup Spack User Cache
-    rm -rf ~/.spack
+    rm -rf "${SPACK_USER_CACHE_PATH}" "${SPACK_BOOTSTRAP_ROOT}"
 fi
+rm -rf "${TMP}"
+mkdir -p "${TMP}"
 
 echo "
 ##
@@ -29,6 +37,7 @@ echo "
 source "${DIR}/git/spack/share/spack/setup-env.sh"
 spack compiler find
 spack bootstrap untrust github-actions
+spack bootstrap root "${SPACK_BOOTSTRAP_ROOT}"
 
 echo "
 ##
@@ -38,7 +47,7 @@ set +e
 RES=$(spack mirror list | grep "${MIRROR_NAME}" | wc -l)
 set -e
 if [ $RES == 0 ]; then
-    spack mirror add "${MIRROR_NAME}" "file://${DIR}/spack_mirror"
+    spack mirror add "${MIRROR_NAME}" "file://${SPACK_MIRROR_PATH}"
 fi
 
 echo "

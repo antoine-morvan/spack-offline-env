@@ -6,11 +6,18 @@ if [ $# == 1 ] && [ "$1" == "--clean" ]; then
 fi
 
 DIR=$(cd $(dirname $0) && pwd)
-export SPACK_USER_CACHE_PATH="${DIR}/spack_user_cache"
 
-export TMP="${DIR}/tmp"
-export TMPDIR="${TMP}"
-mkdir -p tmp
+SPACK_ROOT="${DIR}/git/spack/"
+SPACK_MIRROR_PATH="${DIR}/spack_mirror"
+MIRROR_NAME=offline_spack_mirror
+SPACK_BOOTSTRAP_ROOT="${DIR}/spack_bootstrap"
+SPACK_USER_CACHE_PATH="${DIR}/spack_user_cache"
+TMP="${DIR}/tmp"
+TMPDIR="${TMP}"
+
+export SPACK_USER_CACHE_PATH
+export TMP
+export TMPDIR
 
 echo "
 ##
@@ -20,17 +27,19 @@ if [ "$CLEAN" == "YES" ]; then
     # Cleanup Spack User Cache
     rm -rf ~/.spack
     # Cleanup Spack
-    if [ -d "${DIR}/git/spack/" ]; then
-        (cd "${DIR}/git/spack/" && git clean -xdff && git checkout .)
+    if [ -d "${SPACK_ROOT}" ]; then
+        (cd "${SPACK_ROOT}" && git clean -xdff && git checkout .)
     fi
     # Cleanup mirror
-    rm -rf "${DIR}/spack_mirror"
+    rm -rf "${SPACK_MIRROR_PATH}"
     rm -rf "${SPACK_USER_CACHE_PATH}"
 fi
-if [ ! -d "${DIR}/git/spack/" ]; then
-    mkdir -p "${DIR}/git/"
-    (cd "${DIR}/git/" && git clone -c feature.manyFiles=true https://github.com/spack/spack.git)
+if [ ! -d "${SPACK_ROOT}" ]; then
+    mkdir -p "$(dirname ${SPACK_ROOT})"
+    git clone -c feature.manyFiles=true https://github.com/spack/spack.git "${SPACK_ROOT}"
 fi
+rm -rf "${TMP}"
+mkdir -p "${TMP}"
 
 echo "
 ##
@@ -41,13 +50,14 @@ spack compiler find
 # /!\ Disable github action to force clingo to be built from sources
 # This makes the bootstrap longer, but the mirror needs it to be sound
 spack bootstrap untrust github-actions
+spack bootstrap root "${SPACK_BOOTSTRAP_ROOT}"
 
 echo "
 ##
 ## 3. Populate mirror with basics
 ##"
 # Init mirror with clingo and its dependencies
-spack mirror create -d "${DIR}/spack_mirror" --dependencies clingo-bootstrap
+spack mirror create -d "${SPACK_MIRROR_PATH}" --dependencies clingo-bootstrap
 # still init bootstrap source cache ...
 spack spec zlib
 
@@ -62,5 +72,9 @@ spack env activate -d "${DIR}/"
 spack concretize -f
 
 ## 4.3. Populate env mirror
-spack mirror create -a -d "${DIR}/spack_mirror" --dependencies
+spack mirror create -a -d "${SPACK_MIRROR_PATH}" --dependencies
+
+## Cleanup
 rm -rf "${DIR}/spack.lock" "${DIR}/.spack-env"
+rm -rf "${TMP}"
+mkdir -p "${TMP}"
