@@ -11,6 +11,7 @@ SPACK_ROOT="${DIR}/git/spack/"
 SPACK_BOOTSTRAP_ROOT="${DIR}/spack_bootstrap"
 SPACK_USER_CACHE_PATH="${DIR}/spack_user_cache"
 SPACK_MIRROR_PATH="${DIR}/spack_mirror"
+SPACK_SOURCE_CACHE_PATH="${SPACK_MIRROR_PATH}/_source-cache"
 MIRROR_NAME=offline_spack_mirror
 TMP="${DIR}/.tmp"
 TMPDIR="${TMP}"
@@ -39,7 +40,7 @@ source "${DIR}/git/spack/share/spack/setup-env.sh"
 # This makes the bootstrap longer, but the mirror needs it to be sound
 spack bootstrap untrust github-actions
 spack bootstrap root "${SPACK_BOOTSTRAP_ROOT}"
-spack bootstrap untrust github-actions
+spack config add config:source_cache:"${SPACK_SOURCE_CACHE_PATH}"
 spack compiler find
 
 echo "

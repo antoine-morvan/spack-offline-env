@@ -4,7 +4,9 @@ spack:
   config:
     install_missing_compilers: true
     concretize: separate
-    source_cache: $SPACK_ENV/spack_mirror
+    source_cache: $SPACK_ENV/spack_mirror/_source-cache
+  mirrors:
+    offline_spack_mirror: file://$SPACK_ENV/spack_mirror
   bootstrap:
     root: $SPACK_ENV/spack_bootstrap
   definitions:
