@@ -46,11 +46,12 @@ echo "
 ## 2. Load & Init Spack
 ##"
 source "${DIR}/git/spack/share/spack/setup-env.sh"
-spack bootstrap root "${SPACK_BOOTSTRAP_ROOT}"
-spack compiler find
 # /!\ Disable github action to force clingo to be built from sources
 # This makes the bootstrap longer, but the mirror needs it to be sound
 spack bootstrap untrust github-actions
+spack bootstrap root "${SPACK_BOOTSTRAP_ROOT}"
+spack bootstrap untrust github-actions
+spack compiler find
 
 echo "
 ##
