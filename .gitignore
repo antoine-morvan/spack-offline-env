@@ -1,5 +1,6 @@
 
 git/
-spack_mirror/
+spack_bootstrap/
 spack_user_cache/
-tmp/
+spack_mirror/
+.tmp/

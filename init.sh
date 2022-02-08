@@ -8,10 +8,10 @@ fi
 DIR=$(cd $(dirname $0) && pwd)
 
 SPACK_ROOT="${DIR}/git/spack/"
-SPACK_MIRROR_PATH="${DIR}/spack_mirror"
-MIRROR_NAME=offline_spack_mirror
 SPACK_BOOTSTRAP_ROOT="${DIR}/spack_bootstrap"
 SPACK_USER_CACHE_PATH="${DIR}/spack_user_cache"
+SPACK_MIRROR_PATH="${DIR}/spack_mirror"
+MIRROR_NAME=offline_spack_mirror
 TMP="${DIR}/.tmp"
 TMPDIR="${TMP}"
 
@@ -46,11 +46,11 @@ echo "
 ## 2. Load & Init Spack
 ##"
 source "${DIR}/git/spack/share/spack/setup-env.sh"
+spack bootstrap root "${SPACK_BOOTSTRAP_ROOT}"
 spack compiler find
 # /!\ Disable github action to force clingo to be built from sources
 # This makes the bootstrap longer, but the mirror needs it to be sound
 spack bootstrap untrust github-actions
-spack bootstrap root "${SPACK_BOOTSTRAP_ROOT}"
 
 echo "
 ##
