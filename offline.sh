@@ -12,7 +12,7 @@ SPACK_MIRROR_PATH="${DIR}/spack_mirror"
 MIRROR_NAME=offline_spack_mirror
 SPACK_BOOTSTRAP_ROOT="${DIR}/spack_bootstrap"
 SPACK_USER_CACHE_PATH="${DIR}/spack_user_cache"
-TMP="${DIR}/tmp"
+TMP="${DIR}/.tmp"
 TMPDIR="${TMP}"
 
 export SPACK_USER_CACHE_PATH
