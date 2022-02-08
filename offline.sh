@@ -9,8 +9,8 @@ DIR=$(cd $(dirname $0) && pwd)
 export SPACK_USER_CACHE_PATH="${DIR}/spack_user_cache"
 MIRROR_NAME=offline_spack_mirror
 
-TMP="${DIR}/tmp"
-TMPDIR="${TMP}"
+export TMP="${DIR}/tmp"
+export TMPDIR="${TMP}"
 mkdir -p tmp
 
 echo "
