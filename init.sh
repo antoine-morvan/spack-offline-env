@@ -18,13 +18,14 @@ if [ "$CLEAN" == "YES" ]; then
     # Cleanup Spack
     if [ -d "${DIR}/git/spack/" ]; then
         (cd "${DIR}/git/spack/" && git clean -xdff && git checkout .)
-    else
-        mkdir -p "${DIR}/git/"
-        (cd "${DIR}/git/" && git clone -c feature.manyFiles=true https://github.com/spack/spack.git)
     fi
     # Cleanup mirror
     rm -rf "${DIR}/spack_mirror"
     rm -rf "${SPACK_USER_CACHE_PATH}"
+fi
+if [ ! -d "${DIR}/git/spack/" ]; then
+    mkdir -p "${DIR}/git/"
+    (cd "${DIR}/git/" && git clone -c feature.manyFiles=true https://github.com/spack/spack.git)
 fi
 
 echo "
