@@ -25,7 +25,7 @@ echo "
 ##"
 if [ "$CLEAN" == "YES" ]; then
     # Cleanup Spack User Cache
-    rm -rf ~/.spack
+    rm -rf "${SPACK_USER_CACHE_PATH}" "${SPACK_BOOTSTRAP_ROOT}"
     # Cleanup Spack
     if [ -d "${SPACK_ROOT}" ]; then
         (cd "${SPACK_ROOT}" && git clean -xdff && git checkout .)
