@@ -1,4 +1,6 @@
-#!/bin/bash -eu
+#!/usr/bin/env bash
+
+set -eu
 
 CLEAN=NO
 if [ $# == 1 ] && [ "$1" == "--clean" ]; then
