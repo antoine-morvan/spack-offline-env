@@ -1,4 +1,6 @@
-#!/bin/bash -eu
+#!/usr/bin/env bash
+
+set -eu
 
 CLEAN=NO
 if [ $# == 1 ] && [ "$1" == "--clean" ]; then
@@ -46,10 +48,10 @@ echo "
 source "${DIR}/git/spack/share/spack/setup-env.sh"
 # /!\ Disable github action to force clingo to be built from sources
 # This makes the bootstrap longer, but the mirror needs it to be sound
+spack compiler find --scope site
 spack bootstrap untrust github-actions
 spack bootstrap root "${SPACK_BOOTSTRAP_ROOT}"
 spack config add config:source_cache:"${SPACK_MIRROR_PATH}"
-spack compiler find
 
 echo "
 ##
