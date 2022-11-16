@@ -14,7 +14,7 @@ spack:
   - mpis:
     - openmpi@4.1.2+cxx
   - hdf5:
-    - hdf5@1.13.0 +cxx+threadsafe+fortran
+    - hdf5@1.13.2 +cxx+threadsafe+fortran
   - compilers:
     - gcc@11.2.0
   specs:
