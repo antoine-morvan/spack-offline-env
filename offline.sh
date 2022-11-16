@@ -5,7 +5,7 @@ if [ $# == 1 ] && [ "$1" == "--clean" ]; then
     CLEAN=YES
 fi
 
-DIR=$(cd $(dirname $0) && pwd)
+DIR=$(dirname $(readlink -f $0))
 
 SPACK_ROOT="${DIR}/git/spack/"
 SPACK_BOOTSTRAP_ROOT="${DIR}/spack_bootstrap"
