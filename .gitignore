@@ -8,3 +8,4 @@ git/
 **/spack_bootstrap/
 **/spack_git_root/
 .tmp/
+**/*.bk
