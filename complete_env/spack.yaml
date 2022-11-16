@@ -7,13 +7,12 @@ spack:
     concretize: separate
   definitions:
   - compilers:
-    
-    # - nvhpc@22.5+mpi
-    # - nvhpc@22.7+mpi
-    # - nvhpc@22.9+mpi
+    - nvhpc@22.5+mpi
+    - nvhpc@22.7+mpi
+    - nvhpc@22.9+mpi
     # # - aocc@4.0.0
-    # - intel-oneapi-compilers@2022.2.0
-    # - intel-oneapi-compilers-classic@2021.7.0
+    - intel-oneapi-compilers@2022.2.0
+    - intel-oneapi-compilers-classic@2021.7.0
     - llvm@15.0.4+flang
     - gcc@12.2.0
     - gcc@9.5.0
@@ -51,79 +50,3 @@ spack:
     - [$^netcdfc]
     - [$^hdf5]
     - [$^mpis]
-  # - matrix:
-  #   - [$netcdffrt]
-  #   - [$%compilers]
-  #   - [$^netcdfc]
-  #   - [$^hdf5]
-  #   - [$^mpis]
-  # - matrix:
-  #   - [$diffutils]
-  #   - [$%compilers]
-  #   - [$^libiconv]
-  compilers:
-  - compiler:
-      spec: gcc@8.4.1
-      paths:
-        cc: /usr/bin/gcc
-        cxx: /usr/bin/g++
-        f77: /usr/bin/gfortran
-        fc: /usr/bin/gfortran
-      flags: {}
-      operating_system: rhel8
-      target: x86_64
-      modules: []
-      environment: {}
-      extra_rpaths: []
-  - compiler:
-      spec: gcc@10.4.0
-      paths:
-        cc: /home_nfs/bmorvana/test/spack-env/spack/opt/spack/linux-rhel8-zen/gcc-8.4.1/gcc-10.4.0-gr5rczpp5f7xwtqwxv7nx62w4yaj2upm/bin/gcc
-        cxx: /home_nfs/bmorvana/test/spack-env/spack/opt/spack/linux-rhel8-zen/gcc-8.4.1/gcc-10.4.0-gr5rczpp5f7xwtqwxv7nx62w4yaj2upm/bin/g++
-        f77: /home_nfs/bmorvana/test/spack-env/spack/opt/spack/linux-rhel8-zen/gcc-8.4.1/gcc-10.4.0-gr5rczpp5f7xwtqwxv7nx62w4yaj2upm/bin/gfortran
-        fc: /home_nfs/bmorvana/test/spack-env/spack/opt/spack/linux-rhel8-zen/gcc-8.4.1/gcc-10.4.0-gr5rczpp5f7xwtqwxv7nx62w4yaj2upm/bin/gfortran
-      flags: {}
-      operating_system: rhel8
-      target: x86_64
-      modules: []
-      environment: {}
-      extra_rpaths: []
-  - compiler:
-      spec: gcc@11.3.0
-      paths:
-        cc: /home_nfs/bmorvana/test/spack-env/spack/opt/spack/linux-rhel8-zen/gcc-8.4.1/gcc-11.3.0-tpniv364b5mc6o6fmywkrmf6ghlnr4od/bin/gcc
-        cxx: /home_nfs/bmorvana/test/spack-env/spack/opt/spack/linux-rhel8-zen/gcc-8.4.1/gcc-11.3.0-tpniv364b5mc6o6fmywkrmf6ghlnr4od/bin/g++
-        f77: /home_nfs/bmorvana/test/spack-env/spack/opt/spack/linux-rhel8-zen/gcc-8.4.1/gcc-11.3.0-tpniv364b5mc6o6fmywkrmf6ghlnr4od/bin/gfortran
-        fc: /home_nfs/bmorvana/test/spack-env/spack/opt/spack/linux-rhel8-zen/gcc-8.4.1/gcc-11.3.0-tpniv364b5mc6o6fmywkrmf6ghlnr4od/bin/gfortran
-      flags: {}
-      operating_system: rhel8
-      target: x86_64
-      modules: []
-      environment: {}
-      extra_rpaths: []
-  - compiler:
-      spec: gcc@12.2.0
-      paths:
-        cc: /home_nfs/bmorvana/test/spack-env/spack/opt/spack/linux-rhel8-zen/gcc-8.4.1/gcc-12.2.0-jt4amrc2ixkubvbqewgyyks566xnltas/bin/gcc
-        cxx: /home_nfs/bmorvana/test/spack-env/spack/opt/spack/linux-rhel8-zen/gcc-8.4.1/gcc-12.2.0-jt4amrc2ixkubvbqewgyyks566xnltas/bin/g++
-        f77: /home_nfs/bmorvana/test/spack-env/spack/opt/spack/linux-rhel8-zen/gcc-8.4.1/gcc-12.2.0-jt4amrc2ixkubvbqewgyyks566xnltas/bin/gfortran
-        fc: /home_nfs/bmorvana/test/spack-env/spack/opt/spack/linux-rhel8-zen/gcc-8.4.1/gcc-12.2.0-jt4amrc2ixkubvbqewgyyks566xnltas/bin/gfortran
-      flags: {}
-      operating_system: rhel8
-      target: x86_64
-      modules: []
-      environment: {}
-      extra_rpaths: []
-  - compiler:
-      spec: gcc@9.5.0
-      paths:
-        cc: /home_nfs/bmorvana/test/spack-env/spack/opt/spack/linux-rhel8-zen/gcc-8.4.1/gcc-9.5.0-rsaz7gekjivvwi5x3itznpmujbdyh32j/bin/gcc
-        cxx: /home_nfs/bmorvana/test/spack-env/spack/opt/spack/linux-rhel8-zen/gcc-8.4.1/gcc-9.5.0-rsaz7gekjivvwi5x3itznpmujbdyh32j/bin/g++
-        f77: /home_nfs/bmorvana/test/spack-env/spack/opt/spack/linux-rhel8-zen/gcc-8.4.1/gcc-9.5.0-rsaz7gekjivvwi5x3itznpmujbdyh32j/bin/gfortran
-        fc: /home_nfs/bmorvana/test/spack-env/spack/opt/spack/linux-rhel8-zen/gcc-8.4.1/gcc-9.5.0-rsaz7gekjivvwi5x3itznpmujbdyh32j/bin/gfortran
-      flags: {}
-      operating_system: rhel8
-      target: x86_64
-      modules: []
-      environment: {}
-      extra_rpaths: []
