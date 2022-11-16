@@ -19,7 +19,6 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-
 DIR=$(dirname $(readlink -f $0))
 
 SPACK_GIT_ROOT="${DIR}/git/spack/"

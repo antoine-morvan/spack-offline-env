@@ -1,9 +1,23 @@
-#!/bin/bash -eu
+#!/usr/bin/env bash
+set -eu
 
 CLEAN=NO
-if [ $# == 1 ] && [ "$1" == "--clean" ]; then
-    CLEAN=YES
-fi
+
+##
+## Read arguments
+##
+while [[ $# -gt 0 ]]; do
+    case $1 in
+    -c|--clean)
+        CLEAN=YES
+        shift # past argument
+        ;;
+    *)
+        echo "ERROR: Unknown option $1"
+        exit 1
+        ;;
+    esac
+done
 
 DIR=$(dirname $(readlink -f $0))
 
