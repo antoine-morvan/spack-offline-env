@@ -1,6 +1,10 @@
 
 git/
-spack_bootstrap/
-spack_user_cache/
-spack_mirror/
+**/spack_user_cache/
+**/spack_mirror/
+**/.spack-env/
+**/spack.lock
+**/spack_bootstrap_root/
+**/spack_bootstrap/
+**/spack_git_root/
 .tmp/
