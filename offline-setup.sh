@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 set -eu
 
+DIR=${DIR:-$(dirname $(readlink -f $0))}
+
 CLEAN=NO
+SPACK_ENV_DIR=${DIR}/simple_env
 
 ##
 ## Read arguments
@@ -12,14 +15,17 @@ while [[ $# -gt 0 ]]; do
         CLEAN=YES
         shift # past argument
         ;;
+    -e|--env)
+        SPACK_ENV_DIR=$2
+        shift # past argument
+        shift # past value
+        ;;
     *)
         echo "ERROR: Unknown option $1"
         exit 1
         ;;
     esac
 done
-
-DIR=$(dirname $(readlink -f $0))
 
 SPACK_ROOT="${DIR}/git/spack/"
 SPACK_BOOTSTRAP_ROOT="${DIR}/spack_bootstrap"
