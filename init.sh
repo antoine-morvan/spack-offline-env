@@ -1,15 +1,28 @@
 #!/usr/bin/env bash
-
 set -eu
 
 CLEAN=NO
-if [ $# == 1 ] && [ "$1" == "--clean" ]; then
-    CLEAN=YES
-fi
+
+##
+## Read arguments
+##
+while [[ $# -gt 0 ]]; do
+    case $1 in
+    -c|--clean)
+        CLEAN=YES
+        shift # past argument
+        ;;
+    *)
+        echo "ERROR: Unknown option $1"
+        exit 1
+        ;;
+    esac
+done
+
 
 DIR=$(dirname $(readlink -f $0))
 
-SPACK_ROOT="${DIR}/git/spack/"
+SPACK_GIT_ROOT="${DIR}/git/spack/"
 SPACK_BOOTSTRAP_ROOT="${DIR}/spack_bootstrap"
 SPACK_USER_CACHE_PATH="${DIR}/spack_user_cache"
 SPACK_MIRROR_PATH="${DIR}/spack_mirror"
@@ -29,14 +42,14 @@ if [ "$CLEAN" == "YES" ]; then
     # Cleanup Spack User Cache
     rm -rf "${SPACK_USER_CACHE_PATH}" "${SPACK_BOOTSTRAP_ROOT}" "${SPACK_MIRROR_PATH}"
     # Cleanup Spack
-    if [ -d "${SPACK_ROOT}" ]; then
-        (cd "${SPACK_ROOT}" && git clean -xdff && git checkout .)
+    if [ -d "${SPACK_GIT_ROOT}" ]; then
+        (cd "${SPACK_GIT_ROOT}" && git clean -xdff && git checkout .)
     fi
     # Cleanup mirror
 fi
-if [ ! -d "${SPACK_ROOT}" ]; then
-    mkdir -p "$(dirname ${SPACK_ROOT})"
-    git clone -c feature.manyFiles=true https://github.com/spack/spack.git "${SPACK_ROOT}"
+if [ ! -d "${SPACK_GIT_ROOT}" ]; then
+    mkdir -p "$(dirname ${SPACK_GIT_ROOT})"
+    git clone -c feature.manyFiles=true https://github.com/spack/spack.git "${SPACK_GIT_ROOT}"
 fi
 rm -rf "${TMP}"
 mkdir -p "${TMP}"
