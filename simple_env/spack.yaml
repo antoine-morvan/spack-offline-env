@@ -1,6 +1,7 @@
 spack:
+  concretizer:
+    unify: false
   view: false
-  concretization: separately
   config:
     install_missing_compilers: true
     concretize: separate
