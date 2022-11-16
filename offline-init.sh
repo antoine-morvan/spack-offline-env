@@ -28,10 +28,10 @@ while [[ $# -gt 0 ]]; do
 done
 
 
-SPACK_GIT_ROOT="${DIR}/git/spack/"
-SPACK_BOOTSTRAP_ROOT="${DIR}/spack_bootstrap"
-SPACK_USER_CACHE_PATH="${DIR}/spack_user_cache"
-SPACK_MIRROR_PATH="${DIR}/spack_mirror"
+SPACK_GIT_ROOT="${SPACK_ENV_DIR}/spack_git_root/"
+SPACK_BOOTSTRAP_ROOT="${SPACK_ENV_DIR}/spack_bootstrap_root"
+SPACK_USER_CACHE_PATH="${SPACK_ENV_DIR}/spack_user_cache"
+SPACK_MIRROR_PATH="${SPACK_ENV_DIR}/spack_mirror"
 MIRROR_NAME=offline_spack_mirror
 TMP="${DIR}/.tmp"
 TMPDIR="${TMP}"
@@ -64,15 +64,18 @@ echo "
 ##
 ## 2. Load & Init Spack
 ##"
-source "${DIR}/git/spack/share/spack/setup-env.sh"
+source "${SPACK_GIT_ROOT}/share/spack/setup-env.sh"
 
-# /!\ Disable github action to force clingo to be built from sources
-# This makes the bootstrap longer, but the mirror needs it to be sound
-spack compiler find --scope site
-spack bootstrap disable github-actions-v0.4
-spack bootstrap disable github-actions-v0.3
-spack bootstrap root "${SPACK_BOOTSTRAP_ROOT}"
-spack config add config:source_cache:"${SPACK_MIRROR_PATH}"
+function configureEnv() {
+    # /!\ Disable github action to force clingo to be built from sources
+    # This makes the bootstrap longer, but the mirror needs it to be sound
+    spack compiler find --scope site
+    spack bootstrap disable github-actions-v0.4
+    spack bootstrap disable github-actions-v0.3
+    spack bootstrap root "${SPACK_BOOTSTRAP_ROOT}"
+    spack config add config:source_cache:"${SPACK_MIRROR_PATH}"
+}
+configureEnv
 
 echo "
 ##
@@ -90,12 +93,16 @@ echo "
 ##"
 
 ## 4.2. Init env & concretize
-spack env activate -d "${DIR}/"
+spack env activate -d "${SPACK_ENV_DIR}/"
+
+# reconfigure activated environment
+configureEnv
+
 spack concretize -f
 
 ## 4.3. Populate env mirror
 spack mirror create -a -d "${SPACK_MIRROR_PATH}" --dependencies
 
 ## Cleanup
-rm -rf "${DIR}/spack.lock" "${DIR}/.spack-env"
+rm -rf "${SPACK_ENV_DIR}/spack.lock" "${SPACK_ENV_DIR}/.spack-env"
 rm -rf "${TMP}"
