@@ -9,3 +9,4 @@ git/
 **/spack_git_root/
 .tmp/
 **/*.bk
+*.log
