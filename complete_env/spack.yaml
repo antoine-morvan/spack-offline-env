@@ -29,7 +29,7 @@ spack:
     - nvhpc@22.9 +mpi
     - intel-oneapi-compilers@2022.2.0
     - intel-oneapi-compilers-classic@2021.7.0
-    - llvm@15.0.4 +flang+cuda+mlir+omp_debug+polly+python
+    - llvm@15.0.4 +flang+cuda+mlir+omp_debug+polly+python cuda_arch=90
     - gcc@9.5.0 +graphite+nvptx+piclibs
     - gcc@10.4.0 +graphite+nvptx+piclibs
     - gcc@11.3.0 +graphite+nvptx+piclibs
@@ -43,9 +43,9 @@ spack:
     - openblas@0.3.21
   - mpis:
     - intel-oneapi-mpi@2021.7.1
-    - openmpi@4.1.4 +cuda+pmi+cxx fabrics=verbs,knem,ucx,xpmem schedulers=slurm +legacylaunchers
-    - mvapich2@2.3.7 +cuda process_managers=slurm,hydra
-    - mpich@4.0.2 +cuda+fortran+hcoll+hwloc+hydra+rocm+slurm+verbs pmi=pmi2
+    - openmpi@4.1.4 +cuda+pmi+cxx fabrics=verbs,knem,ucx,xpmem schedulers=slurm +legacylaunchers cuda_arch=90
+    - mvapich2@2.3.7 +cuda process_managers=slurm,hydra cuda_arch=90
+    - mpich@4.0.2 +cuda+fortran+hcoll+hwloc+hydra+rocm+slurm+verbs pmi=pmi2 cuda_arch=90
   - hdf5:
     - hdf5@1.13.2 +hl+mpi+szip+cxx+threadsafe+fortran
   - netcdfc:
