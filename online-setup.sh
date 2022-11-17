@@ -48,6 +48,10 @@ if [ "$CLEAN" == "YES" ]; then
     # Cleanup Spack User Cache
     rm -rf "${SPACK_USER_CACHE_PATH}" "${SPACK_BOOTSTRAP_ROOT}"
 fi
+if [ ! -d "${SPACK_GIT_ROOT}" ]; then
+    mkdir -p "$(dirname ${SPACK_GIT_ROOT})"
+    git clone -c feature.manyFiles=true https://github.com/spack/spack.git "${SPACK_GIT_ROOT}"
+fi
 rm -rf "${TMP}"
 mkdir -p "${TMP}"
 
@@ -55,7 +59,7 @@ echo "
 ##
 ## 2. Load & Init Spack
 ##"
-source "${DIR}/git/spack/share/spack/setup-env.sh"
+source "${SPACK_GIT_ROOT}/share/spack/setup-env.sh"
 
 function configureEnv() {
     spack bootstrap root "${SPACK_BOOTSTRAP_ROOT}"
