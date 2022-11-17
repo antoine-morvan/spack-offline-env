@@ -1,6 +1,6 @@
 spack:
   concretizer:
-    unify: false
+    unify: when_possible
   view: false
   config:
     install_missing_compilers: true
