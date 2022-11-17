@@ -18,8 +18,7 @@ spack:
   - compilers:
     - gcc@11.2.0
   specs:
-  - matrix:
-    - [$compilers]
+  - $compilers
   - matrix:
     - [$hdf5]
     - [$%compilers]
