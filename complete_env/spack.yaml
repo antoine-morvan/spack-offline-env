@@ -43,8 +43,9 @@ spack:
     - openblas@0.3.21
   - mpis:
     - intel-oneapi-mpi@2021.7.1
-    - openmpi@4.1.4 +pmi+cxx fabrics=verbs,knem,ucx,xpmem schedulers=slurm +legacylaunchers
-    - mvapich2@2.3.7
+    - openmpi@4.1.4 +cuda+pmi+cxx fabrics=verbs,knem,ucx,xpmem schedulers=slurm +legacylaunchers
+    - mvapich2@2.3.7 +cuda process_managers=slurm,hydra
+    - mpich@4.0.2 +cuda+fortran+hcoll+hwloc+hydra+rocm+slurm+verbs pmi=pmi2
   - hdf5:
     - hdf5@1.13.2 +hl+mpi+szip+cxx+threadsafe+fortran
   - netcdfc:
