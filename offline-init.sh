@@ -2,6 +2,7 @@
 set -eu
 
 DIR=${DIR:-$(dirname $(readlink -f $0))}
+TMPDIR=${TMPDIR:-"${DIR}/.tmp"}
 
 CLEAN=NO
 SPACK_ENV_DIR=${DIR}/simple_env
@@ -27,14 +28,13 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-
 SPACK_GIT_ROOT="${SPACK_ENV_DIR}/spack_git_root/"
 SPACK_BOOTSTRAP_ROOT="${SPACK_ENV_DIR}/spack_bootstrap_root"
 SPACK_USER_CACHE_PATH="${SPACK_ENV_DIR}/spack_user_cache"
 SPACK_MIRROR_PATH="${SPACK_ENV_DIR}/spack_mirror"
 MIRROR_NAME=offline_spack_mirror
-TMP="${DIR}/.tmp"
-TMPDIR="${TMP}"
+
+TMP="${TMPDIR}"
 
 export SPACK_USER_CACHE_PATH
 export TMP
