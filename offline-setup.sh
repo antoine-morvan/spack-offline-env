@@ -82,7 +82,7 @@ echo "
 ##
 ## 4. Bootstrap Clingo
 ##"
-spack -d spec zlib
+spack spec zlib
 
 echo "
 ##
