@@ -16,9 +16,11 @@ spack:
   - hdf5:
     - hdf5@1.13.2 +cxx+threadsafe+fortran
   - compilers:
+    - gcc@11.2.0
+  - compilers-setup:
     - gcc@11.2.0 +graphite+nvptx+piclibs
   specs:
-  - $compilers
+  - $compilers-setup
   - matrix:
     - [$hdf5]
     - [$%compilers]
