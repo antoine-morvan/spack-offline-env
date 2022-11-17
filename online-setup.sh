@@ -75,7 +75,7 @@ spack spec zlib
 
 echo "
 ##
-## 4. Init offline env
+## 4. Concretize and Install offline env
 ##"
 spack env activate -d "${SPACK_ENV_DIR}/"
 spack concretize -f
