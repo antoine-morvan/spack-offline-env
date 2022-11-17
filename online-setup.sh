@@ -77,6 +77,6 @@ echo "
 ##
 ## 4. Init offline env
 ##"
-spack env activate -d "${DIR}/"
+spack env activate -d "${SPACK_ENV_DIR}/"
 spack concretize -f
 spack install -v -j $(nproc) --fail-fast
