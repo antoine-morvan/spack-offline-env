@@ -80,3 +80,16 @@ echo "
 spack env activate -d "${SPACK_ENV_DIR}/"
 spack concretize -f
 spack install -v -j $(nproc) --fail-fast
+
+echo "
+##
+## list
+##"
+
+spack find
+
+echo "
+##
+## gen modules
+##"
+spack module tcl refresh -y
