@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 set -eu
 
-DIR=${DIR:-$(dirname $(readlink -f $0))}
-TMPDIR=${TMPDIR:-"${DIR}/.tmp"}
+SCRIPT_DIR=${SCRIPT_DIR:-$(dirname $(readlink -f $0))}
+TMPDIR=${TMPDIR:-"${SCRIPT_DIR}/.tmp"}
 
 CLEAN=NO
-SPACK_ENV_DIR=${DIR}/simple_env
+SPACK_ENV_DIR=${SCRIPT_DIR}/simple_env
 
 ##
 ## Read arguments
