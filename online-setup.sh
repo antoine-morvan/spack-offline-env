@@ -62,6 +62,7 @@ echo "
 ## Backup env file (before all variables get replaced by following steps)
 cp ${SPACK_ENV_DIR}/spack.yaml ${SPACK_ENV_DIR}/spack.yaml.bk
 source "${SPACK_GIT_ROOT}/share/spack/setup-env.sh"
+set +eu
 
 function configureEnv() {
     spack bootstrap root "${SPACK_BOOTSTRAP_ROOT}"
