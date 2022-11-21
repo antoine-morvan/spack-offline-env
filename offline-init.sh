@@ -64,6 +64,8 @@ echo "
 ##
 ## 2. Load & Init Spack
 ##"
+## Backup env file (before all variables get replaced by following steps)
+cp ${SPACK_ENV_DIR}/spack.yaml ${SPACK_ENV_DIR}/spack.yaml.bk
 source "${SPACK_GIT_ROOT}/share/spack/setup-env.sh"
 
 function configureEnv() {
@@ -91,9 +93,6 @@ echo "
 ## 4. Complete Spack install
 ## => extra repos, patches, fetch extra depenencies, etc.
 ##"
-
-## Backup env file (before all variables get replaced by following steps)
-cp ${SPACK_ENV_DIR}/spack.yaml ${SPACK_ENV_DIR}/spack.yaml.bk
 
 ## 4.2. Init env & concretize
 spack env activate -d "${SPACK_ENV_DIR}/"
