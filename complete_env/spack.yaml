@@ -7,7 +7,7 @@ spack:
     concretize: separate
   packages:
     llvm:
-      variants:  +flang+cuda+mlir+omp_debug+polly+python cuda_arch=90
+      variants:  +flang+cuda+mlir+omp_debug+polly+python cuda_arch=89
     nvhpc:
       variants: +mpi
     gcc:
@@ -40,9 +40,9 @@ spack:
     - adios2@2.7.1 +fortran+hdf5
   specs:
   - $compilers
-  - matrix:
-    - [$blass]
-    - [$%compilers]
+  # - matrix:
+  #   - [$blass]
+  #   - [$%compilers]
   # - matrix:
   #   - [$mpis]
   #   - [$%compilers]
